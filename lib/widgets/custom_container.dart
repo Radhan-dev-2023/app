@@ -48,7 +48,7 @@ class CustomContainer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "RS $value",
+                " $value",
                 style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
@@ -79,18 +79,19 @@ class CustomContainer extends StatelessWidget {
         color: Colors.black54,
         width: 2.0,
       ),
-      borderRadius: BorderRadius.circular(10.0),
+      borderRadius: BorderRadius.circular(20.0),
     ),
     child: const Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Icon(Icons.info_outline, size: 28),
+        Icon(Icons.info_outline, size: 22,color: Color.fromRGBO(57,112, 104, 1),),
+        SizedBox(width: 15,),
         Expanded(
           child: Text(
             "Your data will be securely auto-updated once every week",
             style: TextStyle(
-                fontWeight: FontWeight.bold, fontSize: 16),
-            textAlign: TextAlign.center,
+                fontWeight: FontWeight.bold, fontSize: 14,color: Colors.black),
+            textAlign: TextAlign.start,
           ),
         ),
       ],
@@ -100,9 +101,9 @@ class CustomContainer extends StatelessWidget {
 
  Widget balanceContainer(String text1,String text2){
   return Container(
-    decoration: BoxDecoration(
-      color: Colors.teal.shade700,
-      borderRadius: const BorderRadius.only(
+    decoration: const BoxDecoration(
+      color:Color.fromRGBO(57,112, 104, 1),
+      borderRadius: BorderRadius.only(
           topLeft: Radius.circular(25),
           bottomRight: Radius.circular(25.0)),
     ),
@@ -113,26 +114,26 @@ class CustomContainer extends StatelessWidget {
           const SizedBox(height: 10),
           const Text(
             "Current Total Balance",
-            style: TextStyle(fontSize: 18, color: Colors.white),
+            style: TextStyle(fontSize: 18, color: Colors.white70),
           ),
           const SizedBox(height: 5),
           Text(
-            '₹ ${text1}',
+            '₹ $text1',
             style:
-            const TextStyle(fontSize: 26, color: Colors.white),
+            const TextStyle(fontSize: 26, color: Colors.white,fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 5),
           const Text(
             "Your current OD-Limit for this month is",
-            style: TextStyle(fontSize: 15, color: Colors.white),
+            style: TextStyle(fontSize: 15, color: Colors.white70),
           ),
-          const SizedBox(height: 5),
+          const SizedBox(height: 1),
           Text(
-            '₹ ${text2}',
+            'Rs. $text2',
             style:
-            const TextStyle(fontSize: 18, color: Colors.white),
+            const TextStyle(fontSize: 15, color: Colors.white70),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 15),
         ],
       ),
     ),

@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:untitled6/screens/bottom_navigation.dart';
 import 'package:untitled6/screens/provider_class.dart';
+import 'package:untitled6/screens/splash_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import 'screens/home_screen.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool isLoggedIn = prefs.getBool('isLoggedIns') ?? false;
   runApp(
     ChangeNotifierProvider(
       create: (context) => TransactionProvider(),
-      child: const MyApp(),
+      child:  MyApp(isLoggedIns: isLoggedIn),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool isLoggedIns;
+  const MyApp({super.key, required this.isLoggedIns});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +31,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: isLoggedIns ? const bottom_Navigation():const SplashScreen(),
     );
   }
 }

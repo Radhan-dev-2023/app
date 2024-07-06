@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 Widget buildLegendItem(String text, Color color) {
   return Row(
+    mainAxisAlignment: MainAxisAlignment.start,
     children: [
       Container(
         width: 20,
@@ -9,7 +10,7 @@ Widget buildLegendItem(String text, Color color) {
         color: color,
         margin: const EdgeInsets.symmetric(horizontal: 5),
       ),
-      Text(text),
+      Text(text,style: const TextStyle(fontWeight: FontWeight.bold),),
     ],
   );
 }

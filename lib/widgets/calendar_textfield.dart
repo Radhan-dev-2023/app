@@ -10,23 +10,22 @@ Widget buildCustomTextField(BuildContext context, TextEditingController controll
         hintText: hintText.isNotEmpty ? hintText : DateFormat('MMMM yyyy').format(dateTime),
         hintStyle: const TextStyle(
           color: Colors.black45,
-          fontSize: 18,
           fontWeight: FontWeight.bold,
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide.none,
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(10),
         ),
         border: InputBorder.none,
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Color(0xFFedf0f8), width: 2),
-          borderRadius: BorderRadius.circular(30),
+          borderSide: const BorderSide(color: Color(0xFFedf0f8),),
+          borderRadius: BorderRadius.circular(15),
         ),
         filled: true,
         fillColor: const Color(0xFFedf0f8),
         contentPadding: const EdgeInsets.symmetric(
-          vertical: 15,
-          horizontal: 20,
+          vertical: 10,
+          horizontal: 8,
         ),
       ),
       controller: controller,

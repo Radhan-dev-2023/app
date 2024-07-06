@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import '../Product%20Resuorces.dart';
+
+import '../resources/product resuorces.dart';
+
 
 class TransactionProvider extends ChangeNotifier {
   List<dynamic> _transactionLists = [];
@@ -10,12 +12,12 @@ class TransactionProvider extends ChangeNotifier {
   String _selectedValue = '';
 
   final Map<String, double> _dataMap = {
-    "PETROLEUM": 0,
-    "RENT": 0,
-    "EMPLOYEE SALARY": 0,
+    "Petroleum": 0,
+    "Rent": 0,
+    "Employee Salary": 0,
     "MutualFunds": 0,
-    "BHARATPE": 0,
-    "POLICYBAZAAR": 0,
+    "BharatPe": 0,
+    "PolicyBazaar": 0,
     "Amazon online": 0
   };
   double _totalBalance = 0.0;
@@ -119,12 +121,12 @@ class TransactionProvider extends ChangeNotifier {
     var transactions = accountData['Transactions']['Transaction'];
 
     Map<String, double> categoryAmounts = {
-      "PETROLEUM": 0,
-      "RENT": 0,
-      "EMPLOYEE SALARY": 0,
+      "Petroleum": 0,
+      "Rent": 0,
+      "Employee Salary": 0,
       "MutualFunds": 0,
-      "BHARATPE": 0,
-      "POLICYBAZAAR": 0,
+      "BharatPe": 0,
+      "PolicyBazaar": 0,
       "Amazon online": 0
     };
 
@@ -133,28 +135,28 @@ class TransactionProvider extends ChangeNotifier {
       var amount = double.tryParse(transaction['amount']) ?? 0.0;
 
       if (narration.contains('PETROLEUM')) {
-        categoryAmounts['PETROLEUM'] ??= 0.0;
-        categoryAmounts['PETROLEUM'] =
+        categoryAmounts['Petroleum'] ??= 0.0;
+        categoryAmounts['Petroleum'] =
             (categoryAmounts['PETROLEUM'] ?? 0.0) + amount;
       } else if (narration.contains('RENT')) {
-        categoryAmounts['RENT'] ??= 0.0;
-        categoryAmounts['RENT'] = (categoryAmounts['RENT'] ?? 0.0) + amount;
+        categoryAmounts['Rent'] ??= 0.0;
+        categoryAmounts['Rent'] = (categoryAmounts['Rent'] ?? 0.0) + amount;
       } else if (narration.contains('EMPLOYEE SALARY')) {
-        categoryAmounts['EMPLOYEE SALARY'] ??= 0.0;
-        categoryAmounts['EMPLOYEE SALARY'] =
-            (categoryAmounts['EMPLOYEE SALARY'] ?? 0.0) + amount;
+        categoryAmounts['Employee Salary'] ??= 0.0;
+        categoryAmounts['Employee Salary'] =
+            (categoryAmounts['Employee Salary'] ?? 0.0) + amount;
       } else if (narration.contains('MUTUALFUNDS')) {
         categoryAmounts['MutualFunds'] ??= 0.0;
         categoryAmounts['MutualFunds'] =
             (categoryAmounts['MutualFunds'] ?? 0.0) + amount;
       } else if (narration.contains('BHARATPE')) {
-        categoryAmounts['BHARATPE'] ??= 0.0;
-        categoryAmounts['BHARATPE'] =
-            (categoryAmounts['BHARATPE'] ?? 0.0) + amount;
+        categoryAmounts['BharatPe'] ??= 0.0;
+        categoryAmounts['BharatPe'] =
+            (categoryAmounts['BharatPe'] ?? 0.0) + amount;
       } else if (narration.contains('POLICYBAZAAR')) {
-        categoryAmounts['POLICYBAZAAR'] ??= 0.0;
-        categoryAmounts['POLICYBAZAAR'] =
-            (categoryAmounts['POLICYBAZAAR'] ?? 0.0) + amount;
+        categoryAmounts['PolicyBazaar'] ??= 0.0;
+        categoryAmounts['PolicyBazaar'] =
+            (categoryAmounts['PolicyBazaar'] ?? 0.0) + amount;
       } else if (narration.contains('Amazon online')) {
         categoryAmounts['Amazon online'] ??= 0.0;
         categoryAmounts['Amazon online'] =

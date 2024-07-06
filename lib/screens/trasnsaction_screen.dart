@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 
 import 'package:untitled6/screens/provider_class.dart';
 
-import 'analytics_screen.dart';
 
 class TransactionScreen extends StatelessWidget {
   const TransactionScreen({super.key});
@@ -13,11 +12,14 @@ class TransactionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final transactionProvider = Provider.of<TransactionProvider>(context);
     var style = const TextStyle(
-        fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16);
+        fontWeight: FontWeight.bold, color: Color.fromRGBO(24, 24, 24, 1), fontSize: 16);
+    var styled = const TextStyle(
+        fontWeight: FontWeight.bold, color: Colors.green, fontSize: 16);
     var styles = const TextStyle(
-        fontWeight: FontWeight.bold, color: Colors.black, fontSize: 12);
+        fontWeight: FontWeight.bold, color: Color.fromRGBO(66, 66, 66, 1), fontSize: 12);
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: Colors.white,
         title: const Text(
           "Transactions",
@@ -26,23 +28,10 @@ class TransactionScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const AnalyticsScreen()),
-              );
-            },
-            icon: const Icon(
-              Icons.analytics_outlined,
-              size: 32,
-            ),
-          ),
-          IconButton(
-            onPressed: () {
               _showFilterOptions(context, transactionProvider);
             },
             icon: const Icon(
-              Icons.sort,
+              Icons.filter_list,
               size: 32,
             ),
           ),
@@ -58,28 +47,42 @@ class TransactionScreen extends StatelessWidget {
           final datas = transactionProvider.filteredTransactions[index];
           final datass = datas['type'];
           return Container(
+            padding: EdgeInsets.all(8),
+            decoration:  BoxDecoration(
+              color:Colors.white,
+              border: Border.all(
+                color: Colors.black,
+                width: 2,
+              ),
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(25),
+                  bottomRight: Radius.circular(25.0)),
+            ),
             margin: const EdgeInsets.all(12),
             child: ListTile(
               leading: datass == 'DEBIT'
                   ? const Icon(
                       CupertinoIcons.arrow_up_right_square_fill,
-                      size: 32,
+                      size: 35,
+                color: Color.fromRGBO(128, 155, 186, 1),
                     )
                   : const Icon(
                       CupertinoIcons.arrow_down_left_square_fill,
-                      size: 32,
+                      size: 35,
+                color: Color.fromRGBO(128, 155, 186, 1),
                     ),
               title: Column(
                 children: [
-                  Text('${datas['narration']}', style: style),
+                  Text('${datas['narration']}', style: style,maxLines: 1,overflow: TextOverflow.ellipsis),
                 ],
               ),
               subtitle: datass == 'CREDIT'
-                  ? const Text("Incoming Transfers")
-                  : const Text("Outgoing Transfers"),
+                  ? const Text("Incoming Transfers",style: TextStyle(color: Color.fromRGBO(105, 105, 105, 1),fontWeight: FontWeight.bold),)
+                  : const Text("Outgoing Transfers",style: TextStyle(color: Color.fromRGBO(105, 105, 105, 1),fontWeight: FontWeight.w500),),
               trailing: Column(
                 children: [
-                  Text(datas['amount'], style: style),
+                  Text('${datas['type'] == 'CREDIT' ? '+' : '-'} ₹ ${datas['amount']}', style:  TextStyle(
+                      fontWeight: FontWeight.bold, color: datas['type'] == 'CREDIT' ?Colors.green:Colors.red, fontSize: 16)),
                   Text(
                     '${datas['valueDate']}-',
                     style: styles
